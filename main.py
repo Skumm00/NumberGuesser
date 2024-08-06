@@ -2,34 +2,44 @@
 # Initialize variables
 
 score = 0
+score2 = 0
 chances = 5
 
 # Starting print statement
 print("Oy! Come on down and welcome to the QUIZ game! You will have 5 chances but you can call for a helpline!")
 
-#get the users name 
-name = input("What's your name?")
-# Get the guess from the first player
-guess = int(input("Enter a number from 1-100: "))
-if guess > 100:
-    print("Please put a number below a hundred!")
-    guess = int(input("Enter a number from 1-100: "))
-elif guess <= 0:
-    print("Please put a number above zero!")
-    guess = int(input("Enter a number from 1-100: "))
-#inputting the different names
-name2 = input("Player 2, whats your name?")
-print(f"Great! Let's begin! {name}, step back from the computer and let {name2} guess!")
+game_mode = int(input("Choose a game mode:\n1. Play with someone else\n2. Use random number generator\nEnter 1 or 2: "))
+
+if game_mode == 1:
+    #get the name of player 1
+    name = input("What's your name? ")
+  #get the name of player2
+    name2 = input("Player 2, what's your name? ")
+
+    guess = int(input(f"{name}, Enter a number from 1-100: "))
+    while guess <= 0 or guess > 100:
+        print("Please enter a number between 1 and 100!")
+        guess = int(input("Enter a number from 1-100: "))
+
+    print(f"Great! Let's begin! {name}, step back from the computer and let {name2} guess!")
+win = False
 def keepscore():
+  
     global score 
     global score2
-    if score > 5:
+    if not win:
+      score = score + 1
+      if score > 5:
         print(f"Congratulations {name}, you won!")
     else:
-        print(f"Congratulations {name2}, you won!")
+      score2 = score + 1
+      if score > 5:
+        print(f"Congratulations {name}, you won!")
+    print(f"{name} has {score} points! {name2} has {score2} points!")
+
 
 # Now creating the helpline feature
-helpline_used = False
+helpline_used= False
 def helpline():
     global helpline_used  # Access helpline
 
@@ -53,7 +63,8 @@ while chances > 0:
 
     if guesses == guess:
         print("Congrats! You guessed it! I'm not sure how, but GREAT job.")
-        score += 1
+        keepscore()
+        win = True
         break
     elif guesses == 0:
       print("Getting a clue!")
@@ -69,5 +80,13 @@ while chances > 0:
 
 if chances == 0:
     print(f"Sorry {name2}, you're OUT. Good luck next time!")
-    score += 1
+    keepscore()
+    win = True
+elif game_mode == 2:
+   #put random function here
+  print("Game Mode 2: Random Number Generator"")
 
+else:
+    print("Invalid choice. Please select 1 or 2.")
+
+win = False
