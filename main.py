@@ -5,7 +5,7 @@ score2 = 0
 chances = 5
 
 # Starting print statement
-print("Oy! Come on down and welcome to the QUIZ game! You will have 5 chances but you can call for a helpline!")
+print("Oy! Come on down and welcome to the QUIZ game! You will have 5 chances but you can call for a helpline!") 
 
 game_mode = int(input("Choose a game mode:\n1. Play with someone else\n2. Use random number generator\nEnter 1 or 2: "))
 
@@ -34,23 +34,6 @@ if game_mode == 1:
           if score > 5:
             print(f"Congratulations {name}, you won!")
         print(f"{name} has {score} points! {name2} has {score2} points!")
-    # Now creating the helpline feature
-    helpline_used= False
-    def helpline():
-        global helpline_used  # Access helpline
-
-        if helpline_used:
-            print("Sorry, you've already used the helpline once. No more cheater!")
-        elif guess % 2 == 0:
-            print("The Number is even!") #getting more things you can get in helpline
-            helpline_used = True
-        elif guess / 4 == 0:
-            print("The Number is divisible by 4!")
-            helpline_used = True
-        else:
-            math = guess * 2
-            print(f"Oy! Need some help, eh? Well, you're in luck! The number multiplied by 2 equals {math}! Now you'll get it for sure!")
-            helpline_used = True  # Mark helpline as used so cant be modified
     # Keep doing until player 2 runs out of chances
     while chances > 0: #actual game logic
         guesses = input(f"Enter a number or select 0 for a helpline. You have {chances} chances left: ")
@@ -92,31 +75,40 @@ elif game_mode == 2:
   #declares the variables so now the user can guess them!
   random_numbers = generate_random()
   guess = random_numbers 
-  #now start the game!
-  print("Let's begin! Can you beat the computer?")
-  guesses = input(f"enter a number or select 0 for a clue. You have {chances} left.")
-  guesses = int(guesses)
-  #turn into a integer 
-  if guesses == guess:
-    print("Congrats! You beat me")
-    keepscore()
-    win = True 
-    break
+# Initialize variables
+score = 0
+score2 = 0
+chances = 5z
+
+# Define the keepscore function outside both if statements
+def keepscore():
+    global score 
+    global score2
+    if not win:
+        score = score + 1
+        if score > 5:
+            print(f"Congratulations {name}, you won!")
+    else:
+        score2 = score + 1
+        if score > 5:
+            print(f"Congratulations {name}, you won!")
+    print(f"{name} has {score} points! {name2} has {score2} points!")
     
-  elif guesses == 0:
-    print("Getting a clue!")
-    helpline()
-  elif guesses > guess: 
-    print("Too High! Try Again")
-    chances -= 1 
-    
-  elif guesses < guess:
-    print("Too Low! Try Again")
-    chances -= 1
-    
-if chances == 0:
-  print(f"Sorry {name2}, you're OUT. Better Luck next time.")
-  keepscore()
- 
-else:
-    print("Invalid choice. Please select 1 or 2. 1 for playing with someone else, 2 for random number generator.")
+# Now creating the helpline feature
+
+helpline_used= False
+def helpline():
+    global helpline_used  # Access helpline
+
+    if helpline_used:
+        print("Sorry, you've already used the helpline once. No more cheater!")
+    elif guess % 2 == 0:
+        print("The Number is even!") #getting more things you can get in helpline
+        helpline_used = True
+    elif guess / 4 == 0:
+        print("The Number is divisible by 4!")
+        helpline_used = True
+    else:
+        math = guess * 2
+        print(f"Oy! Need some help, eh? Well, you're in luck! The number multiplied by 2 equals {math}! Now you'll get it for sure!")
+        helpline_used = Tru # Mark helpline as used so cant be modified
