@@ -6,6 +6,7 @@ chances = 5
 
 # Define the keepscore function outside both if statements
 def keepscore():
+    
     global score 
     global score2
     global play
@@ -18,11 +19,14 @@ def keepscore():
         if score > 5:
             print(f"Congratulations {name}, you won!")
     print(f"{name} has {score} points! {name2} has {score2} points!")
-        if play = True and score > 5: 
-            print(f"Congrats! {name2}, you won!")
-        else: 
-            score2 = score2 + 1 
-        print(f"{name} has {score} points! {name2} has {score2} points!")
+        #checks whoever gets first for the computer!
+    if name == "PC" and score > score2:
+            #conditional to check if the PC won, and the name is the PC
+            print("HAHAHA, The PC has DESTROYED you!")
+        #conditional to check if its a PC and the User Won
+    elif name == "PC" and score2 > score: 
+            print("Well Wow! You Really did beat the PC")
+        #doesnt show up if you are playing against a actual user.
 # Now creating the helpline feature
 helpline_used= False
 def helpline():
@@ -44,11 +48,22 @@ def helpline():
 #Now defining the call quesion function
 win = False
 
+#if user wants to play again
+play = False
+def playagain():
+    user_choice = input("Want to Play Again? yes/no")
+    if user_choice.lower() == "yes":
+        play = True
+        questions()
+    elif user.choice.lower() == "no":
+        play = False 
+        print("Got It!")
+    
+    return user_choice 
 #Gives the questions
-selecter_choice = f"Great! Let's begin! {name}, step back from the computer and let {name2} guess!"
 def questions():
     chances =  5
-    print(selecter_choice)
+    print(f"Great! Let's begin! {name}, step back from the computer and let {name2} guess!")
     win = False
     # Keep doing until player 2 runs out of chances
     while chances > 0: #actual game logic
@@ -59,6 +74,7 @@ def questions():
             print("Congrats! You guessed it! I'm not sure how, but GREAT job.")
             keepscore()
             break
+            playagain()
         elif guesses == 0:
           print("Getting a clue!")
           helpline()
@@ -72,19 +88,9 @@ def questions():
         print(f"Sorry, you're OUT. Good luck next time!")
         keepscore()
         win = True
+        playagain()
     win = False
 
-#if user wants to play again
-play = False
-def playagain():
-    user_choice = input("Want to Play Again? yes/no")
-    if user_choice.lower() == "yes":
-        play = True 
-    elif user.choice.lower() == "no":
-        play = False 
-    if play = True and game_mode == 1:
-        selector_choice = f"Great! Lets's begin! {name2}, step back from the computer and let {name} guess!"
-        print(selector_choice)
 # Starting print statement
 print("Oy! Come on down and welcome to the QUIZ game! You will have 5 chances but you can call for a helpline!") 
 game_mode = int(input("Choose a game mode:\n1. Play with someone else\n2. Use random number generator\nEnter 1 or 2: "))
@@ -102,6 +108,7 @@ if game_mode == 1:
     questions()
 elif game_mode == 2:
   print("Game Mode 2: Random Number Generator")
+    
   #logic: seed for the inital value, n for the digits in the seed(4 default), iterations for how many times you want it, mininum number is 1, and max number is 100.
   #gives the function generate_random
   def generate_random(iterations=1, min_value=1, max_value=100):
@@ -116,8 +123,13 @@ elif game_mode == 2:
         #finnaly returns the result
       return result[0]
   #declares the variables so now the user can guess them!
+    
   random_numbers = generate_random()
   guess = random_numbers
+    
   name2 = input("Before you face the computer, whats your name?")
   name = "PC"
   questions()
+  if guess <= 0 or guess > 100: 
+      print("This is a very secret error message! Eror 40404040")
+    
