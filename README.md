@@ -1,3 +1,4 @@
 Here is a number guesser game in which you can run the code and play with your friend or against the computer. Orignally just going to be a simple guessing project turned into an advanced game in which you can unlock different messages for winning or losing and also can guess numbers and gain points from them.
 All Code was made by me and some challenges I ran into were by using custom libraries like import but I understood how to use it. This Project was good for me on how to use python furthermore. 
 To play the NumberGuesser, download the repo, or clone it on a text editor. If you are using either of those options I recemend VS Code as it is easy to use git with it. Then have python installed and run the program and you can just use it in the console which I prefer instead of UI like pygame.
+![numberguesser](https://github.com/user-attachments/assets/4f5036a4-c33d-4362-b32a-78660f10b5ad)
